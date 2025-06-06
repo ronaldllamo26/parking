@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendant Dashboard - Parking System</title>
+    <link rel="stylesheet" href="attendant-dashboard.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Attendant Panel</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">📊 Dashboard</a>
+            <a href="#monitor" class="nav-item" data-section="monitor">🚗 Monitor Slots</a>
+            <a href="#log" class="nav-item" data-section="log">📋 Car Log</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" class="logout-btn" id="logoutBtn">🚪 Logout</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <h1 id="pageTitle">Dashboard</h1>
+            <span class="attendant-name" id="attendantName">Welcome, Attendant</span>
+        </header>
+
+        <div class="content-section active" id="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-info">
+                        <h3>Total Slots</h3>
+                        <p class="stat-number">150</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3>Available</h3>
+                        <p class="stat-number">89</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔴</div>
+                    <div class="stat-info">
+                        <h3>Occupied</h3>
+                        <p class="stat-number">61</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section" id="monitor">
+            <h2>Monitor Parking Slots</h2>
+            <div class="slot-grid">
+                <div class="slot-card available">A-01 - Available</div>
+                <div class="slot-card occupied">A-02 - Occupied</div>
+                <!-- More slots can be dynamically added -->
+            </div>
+        </div>
+
+        <div class="content-section" id="log">
+            <h2>Car Entry/Exit Log</h2>
+            <ul class="log-list">
+                <li>10:30 AM - Car Entered A-05</li>
+                <li>10:00 AM - Car Exited B-01</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const navItems = document.querySelectorAll('.nav-item');
+        const contentSections = document.querySelectorAll('.content-section');
+        const pageTitle = document.getElementById('pageTitle');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                navItems.forEach(i => i.classList.remove('active'));
+                contentSections.forEach(section => section.classList.remove('active'));
+
+                item.classList.add('active');
+                const target = document.getElementById(item.getAttribute('data-section'));
+                if (target) {
+                    target.classList.add('active');
+                    pageTitle.textContent = item.textContent.trim();
+                }
+            });
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', e => {
+            e.preventDefault();
+            localStorage.removeItem('attendantName');
+            window.location.href = 'attendantlogin.html';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedName = localStorage.getItem('attendantName') || 'Attendant';
+            document.getElementById('attendantName').textContent = `Welcome, ${storedName}`;
+        });
+    </script>
+</body>
+</html>

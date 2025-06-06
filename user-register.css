@@ -1,0 +1,374 @@
+/* User Registration Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('parkinglot.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.register-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px 40px; /* Reduced top/bottom padding to make the container shorter */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 550px; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideIn 0.6s ease-out;
+}
+
+.register-form h2 {
+    text-align: center;
+    margin-bottom: 8px;
+    /* Changed to white */
+    color: white; 
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    text-align: center;
+    /* Changed to white */
+    color: white; 
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: white; 
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="tel"],
+.register-form input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.register-form input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    animation: inputFocus 0.3s ease-out;
+}
+
+.password-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.password-wrapper input {
+    margin-bottom: 0;
+    padding-right: 45px;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 12px;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.eye-icon:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.password-requirements {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    border: 1px solid #e9ecef;
+}
+
+.password-requirements h4 {
+    color: #495057;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.password-requirements ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.requirement {
+    font-size: 13px;
+    padding: 4px 0;
+    color: #6c757d;
+    position: relative;
+    padding-left: 20px;
+    transition: all 0.3s ease;
+}
+
+.requirement::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.requirement.valid {
+    color: #28a745;
+}
+
+.requirement.valid::before {
+    content: '✓';
+    color: #28a745;
+}
+
+.requirement.invalid {
+    color: #dc3545;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.checkbox-group label {
+    margin: 0;
+    cursor: pointer;
+    line-height: 1.4;
+    /* Changed to white */
+    color: white; 
+}
+
+.terms-link,
+.privacy-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.terms-link:hover,
+.privacy-link:hover {
+    text-decoration: underline;
+}
+
+.success-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.error-message {
+    background: #fee;
+    border: 1px solid #fcc;
+    color: #c66;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.register-form button {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.register-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.register-form button:active {
+    transform: translateY(0);
+}
+
+.login-option {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    /* Changed to white */
+    color: white; 
+}
+
+.login-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.login-link:hover {
+    color: #374151;
+    text-decoration: underline;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    /* Changed to white */
+    color: white; 
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #667eea;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes inputFocus {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .register-container {
+        padding: 20px; /* Reduced padding for smaller screens as well */
+        margin: 10px;
+        max-width: 90%; 
+    }
+    
+    .register-form h2 {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+    
+    .subtitle {
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .register-form input {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+    
+    .password-wrapper input {
+        padding-right: 40px;
+    }
+    
+    .register-form button {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .password-requirements {
+        padding: 12px;
+    }
+    
+    .checkbox-group {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    .register-container {
+        padding: 15px; /* Even further reduced for very small screens */
+        max-width: 95%; 
+    }
+    
+    .register-form h2 {
+        font-size: 22px;
+    }
+}

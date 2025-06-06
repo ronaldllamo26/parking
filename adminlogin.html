@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Parking System</title>
+    <link rel="stylesheet" href="adminlogin.css">
+    <link rel="stylesheet" href="admin-dashboard.html">
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+    <div class="login-container">
+       <form class="login-form" id="loginForm">
+    <h2>Admin</h2>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label for="password">Password</label>
+    <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <span id="togglePassword" class="eye-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path id="eye-closed" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22"/>
+                <path id="eye-open" d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z" style="display: none;"/>
+                <circle id="eye-pupil" cx="12" cy="12" r="3" style="display: none;"/>
+            </svg>
+        </span>
+    </div>
+
+    <div id="errorMessage" class="error-message" style="display: none;">
+        Invalid email or password. Please try again.
+    </div>
+
+    <button type="submit">Login</button>
+    <a href="homepage.html" class="back-link">← Back to Home</a>
+</form>
+
+<script>
+    // Built-in Admin Accounts
+    const ADMIN_CREDENTIALS = [
+        {
+            email: "ronaldllamo@gmail.com",
+            password: "admin123",
+            name: "Main Admin"
+        },
+        {
+            email: "jessabelronato@gmail.com", 
+            password: "admin123",
+            name: "Parking Manager"
+        },
+        {
+            email: "admin@123",
+            password: "admin123",
+            name: "SuperAdmin"
+        }
+        
+    ];
+
+    // Eye toggle functionality
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    const eyeOpen = document.getElementById('eye-open');
+    const eyePupil = document.getElementById('eye-pupil');
+    const eyeClosed = document.getElementById('eye-closed');
+
+    togglePassword.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+            // Show password - eye open
+            passwordInput.type = 'text';
+            eyeOpen.style.display = 'block';
+            eyePupil.style.display = 'block';
+            eyeClosed.style.display = 'none';
+        } else {
+            // Hide password - eye closed with slash
+            passwordInput.type = 'password';
+            eyeOpen.style.display = 'none';
+            eyePupil.style.display = 'none';
+            eyeClosed.style.display = 'block';
+        }
+    });
+
+    // Login form functionality
+    const loginForm = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const errorMessage = document.getElementById('errorMessage');
+
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const enteredEmail = emailInput.value.trim();
+        const enteredPassword = passwordInput.value;
+
+        // Check if credentials match any admin account
+        const validUser = ADMIN_CREDENTIALS.find(user => 
+            user.email === enteredEmail && user.password === enteredPassword
+        );
+
+        if (validUser) {
+    // Save admin name sa localStorage para magamit sa dashboard
+    localStorage.setItem('adminName', validUser.name);
+
+    // Redirect to admin dashboard page
+    window.location.href = 'admin-dashboard.html';
+} else {
+    // Show error message
+    errorMessage.style.display = 'block';
+    setTimeout(function() {
+        errorMessage.style.display = 'none';
+    }, 3000);
+}
+
+    });
+</script>
+
+    </div>
+</body>
+</html>

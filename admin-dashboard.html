@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Parking System</title>
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Parking Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+            <a href="#parking-slots" class="nav-item" data-section="parking-slots">
+                <span class="nav-icon">🚗</span>
+                Parking Slots
+            </a>
+            <a href="#reservations" class="nav-item" data-section="reservations">
+                <span class="nav-icon">📋</span>
+                Reservations
+            </a>
+            <a href="#users" class="nav-item" data-section="users">
+                <span class="nav-icon">👥</span>
+                Users
+            </a>
+            <a href="#reports" class="nav-item" data-section="reports">
+                <span class="nav-icon">📈</span>
+                Reports
+            </a>
+            <a href="#settings" class="nav-item" data-section="settings">
+                <span class="nav-icon">⚙️</span>
+                Settings
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+           <a href="#" class="logout-btn" id="logoutBtn">
+    <span class="nav-icon">🚪</span>
+    Logout
+</a>
+
+<script>
+document.getElementById('logoutBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.removeItem('adminName');  // clear stored admin name
+    window.location.href = 'adminlogin.html';  // redirect to login
+});
+</script>
+
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="admin-info">
+                    <span class="admin-name" id="adminName">Welcome, Admin</span>
+                    <div class="admin-avatar">👤</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="content-section active" id="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🚗</div>
+                    <div class="stat-info">
+                        <h3>Total Slots</h3>
+                        <p class="stat-number">150</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3>Available</h3>
+                        <p class="stat-number">89</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔴</div>
+                    <div class="stat-info">
+                        <h3>Occupied</h3>
+                        <p class="stat-number">61</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3>Today's Revenue</h3>
+                        <p class="stat-number">₱12,450</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <span class="activity-time">10:30 AM</span>
+                            <span class="activity-text">Car entered Slot A-12</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-time">10:15 AM</span>
+                            <span class="activity-text">Car exited Slot B-05</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-time">09:45 AM</span>
+                            <span class="activity-text">New reservation created</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="action-btn">Add New Slot</button>
+                        <button class="action-btn">View All Reservations</button>
+                        <button class="action-btn">Generate Report</button>
+                        <button class="action-btn">Manage Users</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parking Slots Content -->
+        <div class="content-section" id="parking-slots">
+            <div class="section-header">
+                <h2>Parking Slots Management</h2>
+                <button class="btn-primary">Add New Slot</button>
+            </div>
+            <div class="parking-grid">
+                <div class="slot-card available">
+                    <div class="slot-header">
+                        <span class="slot-number">A-01</span>
+                        <span class="slot-status available">Available</span>
+                    </div>
+                    <div class="slot-details">
+                        <p>Type: Regular</p>
+                        <p>Rate: ₱50/hour</p>
+                    </div>
+                </div>
+                <div class="slot-card occupied">
+                    <div class="slot-header">
+                        <span class="slot-number">A-02</span>
+                        <span class="slot-status occupied">Occupied</span>
+                    </div>
+                    <div class="slot-details">
+                        <p>Type: Regular</p>
+                        <p>Rate: ₱50/hour</p>
+                        <p>Since: 09:30 AM</p>
+                    </div>
+                </div>
+                <!-- Add more slots as needed -->
+            </div>
+        </div>
+
+        <!-- Other sections (placeholder content) -->
+        <div class="content-section" id="reservations">
+            <h2>Reservations Management</h2>
+            <p>Manage parking reservations here...</p>
+        </div>
+
+        <div class="content-section" id="users">
+            <h2>User Management</h2>
+            <p>Manage system users here...</p>
+        </div>
+
+        <div class="content-section" id="reports">
+            <h2>Reports & Analytics</h2>
+            <p>View reports and analytics here...</p>
+        </div>
+
+        <div class="content-section" id="settings">
+            <h2>System Settings</h2>
+            <p>Configure system settings here...</p>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar navigation
+        const navItems = document.querySelectorAll('.nav-item');
+        const contentSections = document.querySelectorAll('.content-section');
+        const pageTitle = document.getElementById('pageTitle');
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.querySelector('.sidebar');
+
+        // Navigation functionality
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all nav items and content sections
+                navItems.forEach(nav => nav.classList.remove('active'));
+                contentSections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked nav item
+                item.classList.add('active');
+                
+                // Show corresponding content section
+                const sectionId = item.getAttribute('data-section');
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    pageTitle.textContent = item.textContent.trim();
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('mobile-open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                sidebar.classList.remove('mobile-open');
+            }
+        });
+
+       document.addEventListener('DOMContentLoaded', () => {
+    const adminName = document.getElementById('adminName');
+    const storedName = localStorage.getItem('adminName') || 'Admin';
+    adminName.textContent = `Welcome, ${storedName}`;
+});
+
+    </script>
+</body>
+</html>

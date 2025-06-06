@@ -1,0 +1,202 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('parkinglot.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-form h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #f1f1f1;
+    font-size: 14px;
+    text-align: left;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 15px;
+}
+
+.login-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3498db80;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #1c5980;
+}
+
+.forgot-password {
+    color: #8b94a8;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+}
+
+.forgot-password:hover {
+    color: #667eea;
+}
+
+.register-link {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+}
+
+.register-link:hover {
+    color: #0062ff;
+}
+
+.register-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 50%;
+    background-color: #0062ff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.register-link:hover::after {
+    width: 100%;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+
+
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+}
+
+.password-wrapper {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    margin-bottom: 0;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    color: #333;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.eye-icon:hover {
+    color: #333;
+}
+
+.error-message {
+    background-color: rgba(231, 76, 60, 0.9);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

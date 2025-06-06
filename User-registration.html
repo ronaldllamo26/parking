@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - Parking System</title>
+    <link rel="stylesheet" href="user-register.css">
+</head>
+<body>
+    <div class="register-container">
+        <form class="register-form" id="registerForm">
+            <h2>Create Account</h2>
+            <p class="subtitle">Join our parking system today</p>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="Enter first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Enter last name" required>
+                </div>
+            </div>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+                <input type="password" id="password" placeholder="Create a password" required>
+                <span id="togglePassword" class="eye-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path id="eye-closed" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22"/>
+                        <path id="eye-open" d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z" style="display: none;"/>
+                        <circle id="eye-pupil" cx="12" cy="12" r="3" style="display: none;"/>
+                    </svg>
+                </span>
+            </div>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="password-wrapper">
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                <span id="toggleConfirmPassword" class="eye-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path class="eye-closed-confirm" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M1 1l22 22"/>
+                        <path class="eye-open-confirm" d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12z" style="display: none;"/>
+                        <circle class="eye-pupil-confirm" cx="12" cy="12" r="3" style="display: none;"/>
+                    </svg>
+                </span>
+            </div>
+
+            <div class="password-requirements">
+                <h4>Password must contain:</h4>
+                <ul id="passwordChecklist">
+                    <li id="length" class="requirement">At least 8 characters</li>
+                    <li id="uppercase" class="requirement">One uppercase letter</li>
+                    <li id="lowercase" class="requirement">One lowercase letter</li>
+                    <li id="number" class="requirement">One number</li>
+                </ul>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the <a href="#" class="terms-link">Terms and Conditions</a> and <a href="#" class="privacy-link">Privacy Policy</a></label>
+            </div>
+
+            <div id="successMessage" class="success-message" style="display: none;">
+                Account created successfully! Redirecting to login...
+            </div>
+
+            <div id="errorMessage" class="error-message" style="display: none;">
+                Please fix the errors above and try again.
+            </div>
+
+            <button type="submit" id="registerBtn">Create Account</button>
+            
+            <div class="login-option">
+                <span>Already have an account? </span>
+                <a href="userlogin.html" class="login-link">Sign in</a>
+            </div>
+            
+            <a href="homepage.html" class="back-link">← Back to Home</a>
+        </form>
+    </div>
+
+    <script>
+        // Password visibility toggle for main password
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeOpen = document.getElementById('eye-open');
+        const eyePupil = document.getElementById('eye-pupil');
+        const eyeClosed = document.getElementById('eye-closed');
+
+        togglePassword.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeOpen.style.display = 'block';
+                eyePupil.style.display = 'block';
+                eyeClosed.style.display = 'none';
+            } else {
+                passwordInput.type = 'password';
+                eyeOpen.style.display = 'none';
+                eyePupil.style.display = 'none';
+                eyeClosed.style.display = 'block';
+            }
+        });
+
+        // Password visibility toggle for confirm password
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const eyeOpenConfirm = document.querySelector('.eye-open-confirm');
+        const eyePupilConfirm = document.querySelector('.eye-pupil-confirm');
+        const eyeClosedConfirm = document.querySelector('.eye-closed-confirm');
+
+        toggleConfirmPassword.addEventListener('click', function() {
+            if (confirmPasswordInput.type === 'password') {
+                confirmPasswordInput.type = 'text';
+                eyeOpenConfirm.style.display = 'block';
+                eyePupilConfirm.style.display = 'block';
+                eyeClosedConfirm.style.display = 'none';
+            } else {
+                confirmPasswordInput.type = 'password';
+                eyeOpenConfirm.style.display = 'none';
+                eyePupilConfirm.style.display = 'none';
+                eyeClosedConfirm.style.display = 'block';
+            }
+        });
+
+        // Password validation
+        passwordInput.addEventListener('input', function() {
+            const password = passwordInput.value;
+            
+            // Check length
+            const lengthReq = document.getElementById('length');
+            if (password.length >= 8) {
+                lengthReq.classList.add('valid');
+                lengthReq.classList.remove('invalid');
+            } else {
+                lengthReq.classList.add('invalid');
+                lengthReq.classList.remove('valid');
+            }
+
+            // Check uppercase
+            const uppercaseReq = document.getElementById('uppercase');
+            if (/[A-Z]/.test(password)) {
+                uppercaseReq.classList.add('valid');
+                uppercaseReq.classList.remove('invalid');
+            } else {
+                uppercaseReq.classList.add('invalid');
+                uppercaseReq.classList.remove('valid');
+            }
+
+            // Check lowercase
+            const lowercaseReq = document.getElementById('lowercase');
+            if (/[a-z]/.test(password)) {
+                lowercaseReq.classList.add('valid');
+                lowercaseReq.classList.remove('invalid');
+            } else {
+                lowercaseReq.classList.add('invalid');
+                lowercaseReq.classList.remove('valid');
+            }
+
+            // Check number
+            const numberReq = document.getElementById('number');
+            if (/[0-9]/.test(password)) {
+                numberReq.classList.add('valid');
+                numberReq.classList.remove('invalid');
+            } else {
+                numberReq.classList.add('invalid');
+                numberReq.classList.remove('valid');
+            }
+        });
+
+        // Form submission
+        const registerForm = document.getElementById('registerForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            const termsAccepted = document.getElementById('terms').checked;
+
+            // Validation
+            let isValid = true;
+            let errorMsg = '';
+
+            // Check if email already exists (check localStorage for registered users)
+            const existingUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            const emailExists = existingUsers.some(user => user.email === email);
+            
+            if (emailExists) {
+                isValid = false;
+                errorMsg = 'Email already exists. Please use a different email or login.';
+            }
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                isValid = false;
+                errorMsg = 'Passwords do not match.';
+            }
+
+            // Check password requirements
+            if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+                isValid = false;
+                errorMsg = 'Password does not meet requirements.';
+            }
+
+            // Check terms acceptance
+            if (!termsAccepted) {
+                isValid = false;
+                errorMsg = 'Please accept the terms and conditions.';
+            }
+
+            if (isValid) {
+                // Create new user object
+                const newUser = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    name: firstName + ' ' + lastName, // Full name for compatibility
+                    email: email,
+                    phone: phone,
+                    password: password,
+                    registrationDate: new Date().toISOString()
+                };
+
+                // Save to localStorage (in real app, this would be sent to server)
+                existingUsers.push(newUser);
+                localStorage.setItem('registeredUsers', JSON.stringify(existingUsers));
+                
+                console.log('New user registered:', newUser);
+                console.log('All registered users:', existingUsers);
+                
+                // Show success message
+                successMessage.innerHTML = 'Account created successfully!<br>You can now login with your credentials.';
+                successMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Redirect after 3 seconds
+                setTimeout(function() {
+                    window.location.href = 'userlogin.html';
+                }, 3000);
+                
+            } else {
+                // Show error message
+                errorMessage.textContent = errorMsg;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            }
+        });
+
+        // Terms and Privacy links
+        document.querySelector('.terms-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Terms and Conditions would be displayed here.');
+        });
+
+        document.querySelector('.privacy-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Privacy Policy would be displayed here.');
+        });
+    </script>
+</body>
+</html>
